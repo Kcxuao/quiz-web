@@ -1,0 +1,374 @@
+[
+  {
+    "id": 1,
+    "question": "%s是输出字符串的格式控制符。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 2,
+    "question": "关键字defined是一个预处理操作符。用于判定一个标识符是否已经被#define定义。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 3,
+    "question": "使用struct、class都可以设计类，class默认权限为public类型。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 4,
+    "question": "通过this指针可以引用到静态成员。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 5,
+    "question": "运算符delete与析构函数一起工作。当使用delete删除一个动态对象时，它首先为这个对象调用析构函数。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 6,
+    "question": "C++语言支持面向对象编程。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 7,
+    "question": "友元函数可以访问私有、公有和保护成员。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 8,
+    "question": "在C++中，类的默认访问权限是公有（public）的。这意味着，类的所有成员都可以被外部访问。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 9,
+    "question": "使用struct、class都可以设计类，struct默认权限是private类型。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 10,
+    "question": "this指针由编译器自动产生、调用。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 11,
+    "question": "%s是输出单个字符的格式控制符。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 12,
+    "question": "C++总共有输入文件流、输出文件流和输入输出文件流3种，并已经将它们标准化。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 1,
+    "question": "让派生类指针pDerived指向基类对象objBase的语句是",
+    "options": {
+      "A": "objBase=(CDerived*)&pDerived;",
+      "B": "objBase=(CDerived*)&pDerived",
+      "C": "pDerived=(CDerived*)&objBase;",
+      "D": "pDerived=(CDerived*)&objBase"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 2,
+    "question": "程序员通常使用什么括住自己定义的头文件",
+    "options": {
+      "A": "尖括号",
+      "B": "双引号",
+      "C": "双括号",
+      "D": "单引号"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 3,
+    "question": "简单成员函数的声明中可以包含关键字",
+    "options": {
+      "A": "const",
+      "B": "volatile",
+      "C": "static",
+      "D": "auto"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 4,
+    "question": "继承中的三种访问控制不包括",
+    "options": {
+      "A": "公有继承",
+      "B": "单一继承",
+      "C": "私有继承",
+      "D": "保护继承"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 5,
+    "question": "下列选项中，可以作为输出流对象的是",
+    "options": {
+      "A": "键盘文件内存",
+      "B": "文件内存显示器",
+      "C": "键盘文件显示器",
+      "D": "键盘内存显示器"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 6,
+    "question": "能实现删除文件功能的语句是",
+    "options": {
+      "A": "ofstream fs(\"hello.dat\",ios::trunc);",
+      "B": "ifstream fs(\"hello.dat\",ios::trunc);",
+      "C": "ifstream fs(\"hello.dat\",ios::out);",
+      "D": "ofstream fs(\"hello.dat\",ios::out);"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 7,
+    "question": "有函数原型\"void hello(int);\"，以下选项中不正确的语句是",
+    "options": {
+      "A": "int a=13; hello(a);",
+      "B": "int b=100; hello(&b);",
+      "C": "int c=6; hello(c+2);",
+      "D": "hello(128);"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 8,
+    "question": "类中成员按访问权限划分，不包括",
+    "options": {
+      "A": "公有成员",
+      "B": "私有成员",
+      "C": "保护成员",
+      "D": "恒定成员"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 9,
+    "question": "下列关于this指针的叙述中，正确的是",
+    "options": {
+      "A": "this指针必须显式说明",
+      "B": "this指针始终指向调用成员函数的对象",
+      "C": "定义一个类后，this指针就指向该类",
+      "D": "成员函数通常没有this指针"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 10,
+    "question": "当使用的程序中用到cin和cout时，需要在程序中包含头文件",
+    "options": {
+      "A": "<fstream>",
+      "B": "<string>",
+      "C": "<iostream>",
+      "D": "<cmath>"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 11,
+    "question": "一元运算符作为类成员函数重载时，形参的个数是",
+    "options": {
+      "A": "0个",
+      "B": "1个",
+      "C": "2个",
+      "D": "0或1个"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 12,
+    "question": "程序员通常使用什么括住系统提供的头文件",
+    "options": {
+      "A": "尖括号",
+      "B": "双引号",
+      "C": "双括号",
+      "D": "单引号"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 13,
+    "question": "以下关于析构函数的说法错误的是",
+    "options": {
+      "A": "析构函数不能有返回值",
+      "B": "析构函数不能有任何参数",
+      "C": "允许有一个唯一的析构函数，即不能重载",
+      "D": "析构函数可以声明返回类型"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 14,
+    "question": "继承分为哪两种继承",
+    "options": {
+      "A": "私有；公有",
+      "B": "单一；多重",
+      "C": "原始；派生",
+      "D": "独立；依赖"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 15,
+    "question": "下列选项中，用于清除基数格式位设置以十六进制数输出的语句是",
+    "options": {
+      "A": "cout << setf (ios::hex, ios::basefield);",
+      "B": "cout << setf (ios::dec, ios::basefield);",
+      "C": "cout << setf (ios::oct, ios::basefield);",
+      "D": "cin>> setf (ios::hex, ios::basefield);"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 16,
+    "question": "文件的I/O由哪三个类提供",
+    "options": {
+      "A": "istream ostream stream",
+      "B": "ifstream ofstream fstream",
+      "C": "ifstream ofstream iostream",
+      "D": "ostream iostream Iostream"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 17,
+    "question": "函数参数的默认值不允许是",
+    "options": {
+      "A": "局部变量",
+      "B": "全局变量",
+      "C": "函数调用",
+      "D": "直接常量"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 18,
+    "question": "对象传递的消息一般由三个部分组成",
+    "options": {
+      "A": "接收对象名 调用对象名 必要的参数",
+      "B": "接收对象名 调用操作名 必要的参数",
+      "C": "接收参数名 调用参数名 必要的参数",
+      "D": "接收对象名 调用参数名 必要的操作"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 19,
+    "question": "若有定义好的构造函数，使用语句hellod;创建对象d，则调用的构造函数的原型是",
+    "options": {
+      "A": "hello();",
+      "B": "hello(int);",
+      "C": "hello(int;);",
+      "D": "hello()"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 20,
+    "question": "下列关于C++语言类库提供输入流类和输出流类的描述中，正确的是",
+    "options": {
+      "A": "输入流类ostream",
+      "B": "输出流类istream",
+      "C": "cin是istream类的对象",
+      "D": "cout是istream类的对象"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 21,
+    "question": "设oa表示要重载的运算符，那么重载运算符的函数名是",
+    "options": {
+      "A": "operator oa",
+      "B": "operator++ oa",
+      "C": "operator-- oa",
+      "D": "operator* oa"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 22,
+    "question": "类中声明的任何成员可以用什么关键字进行修饰",
+    "options": {
+      "A": "extern",
+      "B": "auto",
+      "C": "register",
+      "D": "private"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 23,
+    "question": "友元函数不可以访问什么成员",
+    "options": {
+      "A": "私有",
+      "B": "公有",
+      "C": "恒定",
+      "D": "保护"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 24,
+    "question": "对象作为函数参数时，不可以使用",
+    "options": {
+      "A": "对象传递",
+      "B": "对象引用",
+      "C": "对象指针",
+      "D": "对象"
+    },
+    "answer": "A"
+  }
+]

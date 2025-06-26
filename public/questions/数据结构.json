@@ -1,0 +1,376 @@
+[
+  {
+    "id": 1,
+    "question": "线性表的链式存储结构是一种什么存储结构",
+    "options": {
+      "A": "随机存取",
+      "B": "顺序存取",
+      "C": "索引存取",
+      "D": "散列存取"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 2,
+    "question": "算法分析的目的是",
+    "options": {
+      "A": "找出数据结构的合理性",
+      "B": "研究算法中的输入和输出的关系",
+      "C": "分析算法的效率以求改进",
+      "D": "分析算法的易懂性和文档性"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 3,
+    "question": "在循环双向链表的p所指结点之后插入s所指结点的操作是",
+    "options": {
+      "A": "p->right=s;s->left=p;p->right->left=s;s->right=p->right;",
+      "B": "p->right=s;p->right->left=s;s->left=p;s->right=p->right;",
+      "C": "s->left=p;s->right=p->right;p->right=s;p->right->left=s;",
+      "D": "s->left=p;s->right=p->right;p->right->left=s;p->right=s;"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 4,
+    "question": "从一个具有n个结点的单链表中查找其值等于x结点时，在查找成功的情况下，需要比较多少个结点",
+    "options": {
+      "A": "n",
+      "B": "n/2",
+      "C": "(n-1)/2",
+      "D": "(n+1)/2"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 5,
+    "question": "在一个链队中，假设f和r分别为队首和队尾指针，则删除一个结点的运算是",
+    "options": {
+      "A": "r=f->next",
+      "B": "r=r->next",
+      "C": "f=f->next",
+      "D": "f=r->next"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 6,
+    "question": "设串s1='ABCDEFG'，s2='PQRST'，函数con(x,y)返回x和y串的连接串，subs(s,i,j)返回串s的从序号i的字符开始的j个字符组成的子串，len(s)返回串s的长度。则con(subs(s1,2,len(s2)),subs(s1,len(s2),2))的结果是",
+    "options": {
+      "A": "BCDEF",
+      "B": "BCDEFG",
+      "C": "BCPQRST",
+      "D": "BCDEFEF"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 7,
+    "question": "数组的两种基本操作是",
+    "options": {
+      "A": "建立与删除",
+      "B": "索引和修改",
+      "C": "查找和修改",
+      "D": "查找与索引"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 8,
+    "question": "二维数组M的元素是4个字符（每个字符占一个存储单元）组成的串，行下标i的范围是0到4，列下标j的范围是0到5，M按行存储时元素M[3][5]的起始地址与M按列存储时的哪个元素的起始地址相同",
+    "options": {
+      "A": "M[2][4]",
+      "B": "M[3][4]",
+      "C": "M[3][5]",
+      "D": "M[4][4]"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 9,
+    "question": "采用顺序查找方法查找长度为n的线性表时，每个元素的平均查找长度为",
+    "options": {
+      "A": "n",
+      "B": "n/2",
+      "C": "(n+1)/2",
+      "D": "(n-1)/2"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 10,
+    "question": "线性表若采用链式存储结构时，要求内存中可用存储单元的地址",
+    "options": {
+      "A": "必须是连续的",
+      "B": "部分地址是连续的",
+      "C": "一定不是连续的",
+      "D": "连续不连续都可以"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 11,
+    "question": "不带头节点的单链表head为空的判定条件是",
+    "options": {
+      "A": "head==NULL",
+      "B": "head->next==NULL",
+      "C": "head->next==head",
+      "D": "head!=NULL"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 12,
+    "question": "带头节点的单链表head为空的判定条件是",
+    "options": {
+      "A": "head==NULL",
+      "B": "head->next==NULL",
+      "C": "head->next==head",
+      "D": "head!=NULL"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 13,
+    "question": "在一个单链表中，已知q所指结点是p所指结点的前驱结点，若在q和p之间插入s结点，则执行",
+    "options": {
+      "A": "s->next=p->next;p->next=s;",
+      "B": "p->next=s->next;s->next=p;",
+      "C": "q->next=s;s->next=p;",
+      "D": "p->next=s;s->next=q;"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 14,
+    "question": "串是一种特殊的线性表，其特殊性体现在",
+    "options": {
+      "A": "可以顺序存储",
+      "B": "数据元素是一个字符",
+      "C": "可以连续存储",
+      "D": "数据元素可以使多个字符"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 15,
+    "question": "二维数组M的成员是6个字符（每个字符占一个存储单元）组成的串，行下标i的范围是从0到8，列下标j的范围是1到10，M的第8列和第5行共占多少字节",
+    "options": {
+      "A": "108",
+      "B": "114",
+      "C": "54",
+      "D": "60"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 16,
+    "question": "在线索二叉树中，t所指结点没左子树的充要条件是",
+    "options": {
+      "A": "t->left==NULL",
+      "B": "t->ltag==1",
+      "C": "t->ltag==1 and t->left==NULL",
+      "D": "以上都不对"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 17,
+    "question": "已知某二叉树的后序遍历序列是dabec，中序遍历是debac，它的前序遍历序列是",
+    "options": {
+      "A": "acbed",
+      "B": "decab",
+      "C": "deabc",
+      "D": "cedba"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 18,
+    "question": "如果T2是由有序树T转换而来的二叉树，那么T中结点的前序就是T2中结点的",
+    "options": {
+      "A": "前序",
+      "B": "后序",
+      "C": "中序",
+      "D": "层次序列"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 19,
+    "question": "对于一个具有n个顶点和e条边的无向图，若采用邻接表表示，则表头向量的大小为",
+    "options": {
+      "A": "n",
+      "B": "n+1",
+      "C": "n-1",
+      "D": "n2"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 20,
+    "question": "有一个有序表为（1,3,9,12,32,41,45,62,75,77,82,95,100），当二分查找值为82的结点时，多少次比较后查找成功",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "4",
+      "D": "8"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 21,
+    "question": "设哈希表长m=14，哈希函数H(key)=key%11，表中已有4个结点：addr(15)=4,addr(38)=5,addr(61)=6,addr(84)=7，其余地址为空，若用二次探测再散列处理冲突，关键字为49的结点的地址是",
+    "options": {
+      "A": "8",
+      "B": "3",
+      "C": "5",
+      "D": "9"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 22,
+    "question": "在以下的叙述中，正确的是",
+    "options": {
+      "A": "线性表的线性存储结构优于链表存储结构",
+      "B": "二维数组是数据元素为线性表的线性表",
+      "C": "栈的操作方式是先进先出",
+      "D": "队列的操作方式是先进后出"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 23,
+    "question": "线性结构的顺序存储结构是一种什么存储结构",
+    "options": {
+      "A": "随机存取",
+      "B": "顺序存取",
+      "C": "索引存取",
+      "D": "散列存取"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 24,
+    "question": "非空的循环单链表head的尾结点（由p所指向）满足",
+    "options": {
+      "A": "p->next==NULL",
+      "B": "p==NULL",
+      "C": "p->next=head",
+      "D": "p==head"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 25,
+    "question": "在一个单链表中，若p所指结点不是最后结点，在p之后插入s所指结点，则执行",
+    "options": {
+      "A": "s->next=p;p->next=s;",
+      "B": "s->next=p->next;p->next=s;",
+      "C": "s->next=p->next;p=s;",
+      "D": "p->next=s;s->next=p;"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 26,
+    "question": "在一个单链表中，若删除p所指结点的后续结点，则执行",
+    "options": {
+      "A": "p->next=p->next->next;",
+      "B": "p=p->next;p->next=p->next->next;",
+      "C": "p->next=p->next;",
+      "D": "p=p->next->next;"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 27,
+    "question": "设有两个串p和q，求q在p中首次出现的位置的运算称作",
+    "options": {
+      "A": "连接",
+      "B": "模式匹配",
+      "C": "求子串",
+      "D": "求串长"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 28,
+    "question": "数组A中，每个元素A的长度为3个字节，行下标i从1到8，列下标j从1到10，从首地址SA开始连续存在存储器中，该数组按行存放时，元素A[8][5]的起始地址为",
+    "options": {
+      "A": "SA+141",
+      "B": "SA+144",
+      "C": "SA+222",
+      "D": "SA+225"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 29,
+    "question": "稀疏矩阵一般的压缩存储方法有两种，分别是",
+    "options": {
+      "A": "二维数组和三维数组",
+      "B": "三元数组和散列",
+      "C": "三元数组和十字链表",
+      "D": "散列和十字链表"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 30,
+    "question": "二维数组M的成员是6个字符（每个字符占一个存储单元）组成的串，行下标i的范围是从0到8，列下标j的范围是1到10，若按行优先方式存储，元素M[8][5]的起始地址与当M按列优先方式存储的哪个元素的起始地址一致",
+    "options": {
+      "A": "M[8][5]",
+      "B": "M[3][10]",
+      "C": "M[5][8]",
+      "D": "M[0][9]"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 31,
+    "question": "如果T2是由有序树T转换而来的二叉树，那么T中结点的后序就是T2中结点的",
+    "options": {
+      "A": "前序",
+      "B": "后序",
+      "C": "中序",
+      "D": "层次序列"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 32,
+    "question": "二叉树的前序遍历结点顺序是abdgcefh，中序遍历的结点顺序是dgbaechf，则其后序遍历结点顺序是",
+    "options": {
+      "A": "bdgcefha",
+      "B": "gdbecfha",
+      "C": "bdgaechf",
+      "D": "gdbehfca"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 33,
+    "question": "按照二叉树的定义，具有3个结点的二叉树有多少种",
+    "options": {
+      "A": "3",
+      "B": "4",
+      "C": "5",
+      "D": "6"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 34,
+    "question": "在一个有向图中，所有顶点的入度之和等于所有顶点的出度之和的多少倍",
+    "options": {
+      "A": "1/2",
+      "B": "1",
+      "C": "2",
+      "D": "4"
+    },
+    "answer": "B"
+  }
+]
