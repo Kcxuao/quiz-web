@@ -1,0 +1,24 @@
+[
+{
+  "id": 1,
+  "type":1,
+  "question": "微分方程$y''+(x^{2}+1)y'+y=2$的一个特解$y^{*}=$",
+  "options": {
+    "A": "2",
+    "B": "$2x$",
+    "C": "$2+x$",
+    "D": "$x^{2}$"
+  },
+  "answer": "A",
+  "explanation": "对于非齐次线性微分方程，当右端项为常数时，可以尝试常数特解。设$y^{*}=C$，代入原方程得：$0+(x^{2}+1)\\cdot0+C=2$，解得$C=2$。因此特解为$y^{*}=2$。其他选项代入后不满足方程。",
+  "difficulty": "medium"
+  },
+  {
+  "id": 2,
+  "type":3,
+  "question": "",
+  "answer": "",
+  "explanation": "",
+  "difficulty": "medium"
+  }
+]

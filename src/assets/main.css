@@ -3,5 +3,5 @@ html {
   padding: 0;
   background-color: #f5f7fa;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }

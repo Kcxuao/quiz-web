@@ -6,7 +6,9 @@
       "A": "正确",
       "B": "错误"
     },
-    "answer": "A"
+    "answer": "A",
+    "explanation": "test",
+    "difficulty": "easy"
   },
   {
     "id": 2,

@@ -1,0 +1,150 @@
+[
+  {
+    "id": 1,
+    "type": 1,
+    "question": "在空间直角坐标系中，点(1,1,0)在",
+    "options": {
+      "A": "Oxy平面上",
+      "B": "Oxz平面上",
+      "C": "Oyz平面上",
+      "D": "z轴上"
+    },
+    "answer": "A",
+    "explanation": "点 (x, y, z) 在 Oxy 平面上的条件是 z=0。题目中 z=0，且 x、y 均不为 0，因此位于 Oxy 平面。其他选项要求 y=0（B）、x=0（C）或 x=y=0（D），均不满足。",
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "type": 1,
+    "question": "极限 $ \\lim_{\\begin{array}{c}x\\rightarrow 0\\\\y\\rightarrow 3\\end{array}}x\\sin\\frac{1}{xy} $",
+    "options": {
+      "A": "等于0",
+      "B": "等于1",
+      "C": "等于3",
+      "D": "不存在"
+    },
+    "answer": "A",
+    "explanation": "当 $x \\to 0$ 时，$x$ 为无穷小量，而 $\\sin\\frac{1}{xy}$ 是有界函数（值域 [-1,1]）。无穷小量 × 有界量 = 无穷小量，因此极限为 0。",
+    "difficulty": "medium"
+  },
+  {
+    "id": 3,
+    "type": 1,
+    "question": "微分方程 $ \\frac{dy}{dx}=\\frac{x}{y}+\\frac{y}{x} $ 是",
+    "options": {
+      "A": "可分离变量的微分方程",
+      "B": "齐次方程",
+      "C": "一阶线性齐次微分方程",
+      "D": "一阶线性非齐次微分方程"
+    },
+    "answer": "B",
+    "explanation": "方程可改写为 $\\frac{dy}{dx} = \\frac{x^2 + y^2}{xy}$，分子分母均为二次齐次函数，符合齐次方程定义。其他选项中：A（无法直接分离变量）、C/D（方程非线性，含 $\\frac{1}{y}$ 和 $\\frac{y}{x}$ 项）。",
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "type": 1,
+    "question": "下列无穷级数中，收敛的无穷级数是",
+    "options": {
+      "A": "$ \\sum_{n=1}^{\\infty}\\frac{2n-2}{3n+1} $",
+      "B": "$ \\sum_{n=1}^{\\infty}(-1)^{n-1} $",
+      "C": "$ \\sum_{n=1}^{\\infty}\\frac{3^{n-1}}{2^{n+1}} $",
+      "D": "$ \\sum_{n=1}^{\\infty}\\frac{1}{n^{2}} $"
+    },
+    "answer": "D",
+    "explanation": "A项通项 $\\frac{2n-2}{3n+1} \\to \\frac{2}{3} \\neq 0$，发散；B项通项 $(-1)^{n-1}$ 不趋于0，发散；C项为等比级数，公比 $r=\\frac{3}{2}>1$，发散；D项是p-级数，$p=2>1$，收敛。",
+    "difficulty": "hard"
+  },
+  {
+    "id": 5,
+    "type": 1,
+    "question": "设积分区域$ D:x^{2}+y^{2}\\leqslant4 $,则二重积分$ \\iint_{D}(2-x-y)dxdy= $",
+    "options": {
+      "A": "0",
+      "B": "4π",
+      "C": "8π",
+      "D": "16π"
+    },
+    "answer": "C",
+    "explanation": "1. 利用对称性简化：积分区域D关于x和y轴对称，-x和-y的积分结果为0，只需计算常数项2的积分。\n2. 计算结果：$2×π×2^2=8π$",
+    "difficulty": "medium"
+  },
+  {
+    "id": 6,
+    "type": 1,
+    "question": "设向量$ \\alpha=\\{2,1,-9\\} $,$ \\beta=\\{1,0,1\\} $,则$ \\alpha\\cdot\\beta= $",
+    "options": {
+      "A": "-9",
+      "B": "-7",
+      "C": "1",
+      "D": "2"
+    },
+    "answer": "B",
+    "explanation": "直接计算点积：$2×1+1×0+(-9)×1=2-9=-7$",
+    "difficulty": "easy"
+  },
+  {
+    "id": 7,
+    "type": 1,
+    "question": "设函数$ f(x,y)=\\frac{4xy}{x^{2}-y^{2}} $,则$ f(1,\\frac{y}{x})= $",
+    "options": {
+      "A": "$ \\frac{4y}{x^{2}-y^{2}} $",
+      "B": "$ \\frac{4y}{y^{2}-x^{2}} $",
+      "C": "$ \\frac{4xy}{x^{2}-y^{2}} $",
+      "D": "$ \\frac{4xy}{y^{2}-x^{2}} $"
+    },
+    "answer": "A",
+    "explanation": "代入x=1和y=y/x：$\\frac{4×1×\\frac{y}{x}}{1-(\\frac{y}{x})^2}=\\frac{4y}{x^2-y^2}$",
+    "difficulty": "medium"
+  },
+  {
+    "id": 8,
+    "type": 1,
+    "question": "设积分区域$ \\Omega:|x|\\leqslant1,|y|\\leqslant1,|z|\\leqslant1 $,则三重积分$ \\iint_{\\Omega}2dxdydz= $",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "8",
+      "D": "16"
+    },
+    "answer": "D",
+    "explanation": "1. 积分区域是边长为2的正方体，体积为8\n2. 被积函数为常数2，积分结果为2×8=16",
+    "difficulty": "medium"
+  },
+  {
+    "id": 9,
+    "type": 1,
+    "question": "设函数$ f(x) $是周期为$ 2\\pi $的周期函数,$ f(x) $的傅里叶级数为$ \\frac{3}{4}+\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}\\cdot 3}{n^{2}}\\cos nx $,则$ f(x) $的傅里叶系数$ b_{1}= $",
+    "options": {
+      "A": "-3",
+      "B": "0",
+      "C": "3",
+      "D": "$ \\frac{15}{4} $"
+    },
+    "answer": "B",
+    "explanation": "傅里叶级数中仅含余弦项，说明f(x)是偶函数，所有正弦系数b_n=0",
+    "difficulty": "hard"
+  },
+  {
+    "id": 10,
+    "type": 1,
+    "question": "微分方程$y''+(x^{2}+1)y'+y=2$的一个特解$y^{*}=$",
+    "options": {
+      "A": "2",
+      "B": "$2x$",
+      "C": "$2+x$",
+      "D": "$x^{2}$"
+    },
+    "answer": "A",
+    "explanation": "对于非齐次线性微分方程，当右端项为常数时，可以尝试常数特解。设$y^{*}=C$，代入原方程得：$0+(x^{2}+1)\\cdot0+C=2$，解得$C=2$。因此特解为$y^{*}=2$。其他选项代入后不满足方程。",
+    "difficulty": "medium"
+  },
+  {
+    "id": 2,
+    "type": 3,
+    "question": "求过点 $M(-1, -2, 3)$ 且与平面 $x - 2y - z + 5 = 0$ 平行的平面方程。",
+    "answer": "$x - 2y - z - 4 = 0$",
+    "explanation": "1. 平行平面的法向量相同，故所求平面法向量为 $(1, -2, -1)$。\n2. 使用点法式方程：$1(x + 1) - 2(y + 2) - 1(z - 3) = 0$。\n3. 展开整理得：$x - 2y - z - 4 = 0$。",
+    "difficulty": "medium"
+  }
+]

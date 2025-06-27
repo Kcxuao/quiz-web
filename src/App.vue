@@ -20,8 +20,14 @@
 
       <!-- 题目内容 -->
       <div class="quiz-content">
-        <div class="quiz-meta">
-          <el-tag type="info">{{ selectedSubjects.join(' > ') || '未选择科目' }}</el-tag>
+        <div class=" quiz-meta">
+          <el-tag type="info">
+            {{
+              showDafult === 1 ? '单选' :
+                currentQuestion.type === 2 ? "填空" : "问答"
+            }}
+          </el-tag>
+
           <el-tag v-if="currentQuestion.difficulty" :type="currentQuestion.difficulty === 'easy' ? 'success' :
             currentQuestion.difficulty === 'medium' ? 'warning' : 'danger'
             ">
@@ -35,7 +41,8 @@
         <h2 class="question-text" v-html="renderMath(currentQuestion.question)"></h2>
 
         <!-- 选项区域 -->
-        <div class="options-grid">
+        <!-- 单选题 -->
+        <div class="options-grid" v-if="showDafult">
           <div v-for="(text, key) in currentQuestion.options" :key="key" class="option-item" :class="{
             'selected': selected === key,
             'correct': selected && key === currentQuestion.answer,
@@ -54,11 +61,18 @@
           </div>
         </div>
 
+        <!-- 填空题 -->
+        <div class="input-text" v-if="currentQuestion.type === 2">
+          <el-input v-model="selected" :rows="6" type="textarea" placeholder="请输入答案" />
+        </div>
+
+        <!-- 非填空题 只展示解析即可 -->
+
         <!-- 解析区域 -->
         <div v-if="showExplanation" class="explanation-section">
           <h3>题目解析</h3>
           <div class="explanation-content">
-            <p>{{ currentQuestion.explanation || '暂无解析' }}</p>
+            <data class="question-text" v-html="renderMath(currentQuestion.explanation)"></data>
             <div v-if="currentQuestion.knowledgePoints" class="knowledge-points">
               <h4>相关知识点：</h4>
               <el-tag v-for="(point, index) in currentQuestion.knowledgePoints" :key="index" class="knowledge-tag">
@@ -80,6 +94,10 @@
           {{ showExplanation ? '隐藏解析' : '显示解析' }}
         </el-button>
 
+        <el-button class="save-button" @click="saveInput" type="primary" size="large" v-if="currentQuestion.type === 2">
+          提交答案
+        </el-button>
+
         <el-button class="nav-button" type="primary" :icon="ArrowRight"
           :disabled="currentIndex === questions.length - 1" @click="nextQuestion" size="large">
           下一题
@@ -95,20 +113,33 @@ import { ArrowLeft, ArrowRight, CircleCheck, CircleClose } from '@element-plus/i
 import { ElMessage } from 'element-plus'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
+import 'element-plus/es/components/message/style/css'
 
 // 科目数据
 const subjects = ref([
-  { value: '马克思主义基本原理' },
-  { value: '中国近现代史纲要' },
-  { value: '数据结构' },
-  { value: 'C++程序设计' },
-  { value: 'Java语言程序设计' },
-  { value: '概率论与数理统计' },
   {
-    value: '高等数学',
+    value: 'test'
+  },
+  {
+    value: '省考', children: [
+      { value: '马克思主义基本原理' },
+      { value: '中国近现代史纲要' },
+      { value: '数据结构' },
+      { value: 'C++程序设计' },
+      { value: 'Java语言程序设计' },
+      { value: '概率论与数理统计' },
+    ]
+  },
+
+  {
+    value: '统考',
     children: [
-      { value: '高等数学1' },
-      { value: '高等数学2' }
+      {
+        value: '高等数学',
+        children: [
+          { value: '2023年10月真题' }
+        ]
+      },
     ]
   }
 ])
@@ -116,13 +147,27 @@ const subjects = ref([
 // 格式化科目数据以适应级联选择器
 const formattedSubjects = computed(() => {
   return subjects.value.map(subject => ({
-    value: subject.value,
-    label: subject.value,
+    // 第一级数据
+    value: subject.id || subject.value,
+    label: subject.name || subject.value,
     children: subject.children ? subject.children.map(child => ({
-      value: child.value,
-      label: child.value
-    })) : undefined
+      // 第二级数据
+      value: child.id || child.value,
+      label: child.name || child.value,
+      children: child.children ? child.children.map(grandChild => ({
+        // 第三级数据
+        value: grandChild.id || grandChild.value,
+        label: grandChild.name || grandChild.value,
+      })) : null
+    })) : null
   }))
+})
+
+const showDafult = computed(() => {
+  if (!currentQuestion.value.hasOwnProperty('type')) {
+    return 1
+  };
+  return currentQuestion.value.type;
 })
 
 const cascaderProps = {
@@ -132,8 +177,8 @@ const cascaderProps = {
   children: 'children'
 }
 
+const selectedSubject = ref() // 默认选择
 const selectedSubjects = ref([])
-const selectedSubject = ref('马克思主义基本原理') // 默认选择
 
 // 题目数据
 const questions = ref([
@@ -148,7 +193,6 @@ const questions = ref([
     },
     answer: 'A',
     explanation: '这是默认题目的解析',
-    knowledgePoints: ['默认知识点'],
     difficulty: 'easy'
   }
 ])
@@ -161,11 +205,11 @@ const handleSubjectChange = async (value) => {
     selected.value = null
 
     // 获取最后一级的科目值
-    const subject = value.length > 0 ? value[value.length - 1] : selectedSubject.value
-
-    // 模拟API请求 - 实际项目中替换为真实API调用
-    const response = await fetch(`/questions/${subject}.json`)
+    const api = `/questions/${value.join("/")}.json`
+    const response = await fetch(api)
     if (!response.ok) throw new Error('题目加载失败')
+    console.log(api);
+
 
     const data = await response.json()
     questions.value = data
@@ -249,7 +293,7 @@ const progressPercentage = computed(() => {
   return Math.round((currentIndex.value + 1) / questions.value.length * 100) + '%'
 })
 
-// 方法
+// 选择题答案判断
 function selectOption(key, answer) {
   if (!selected.value) {
     selected.value = key
@@ -265,6 +309,23 @@ function selectOption(key, answer) {
       }, 800) // 0.8秒延迟让用户看到反馈
     }
   }
+}
+
+// 填空题答案判断
+function saveInput() {
+  if (selected.value === currentQuestion.value.answer) {
+    ElMessage.success("回答正确")
+    setTimeout(() => {
+      if (currentIndex.value < questions.value.length - 1) {
+        nextQuestion()
+      } else {
+        ElMessage.success('恭喜完成所有题目！')
+      }
+    }, 800) // 0.8秒延迟让用户看到反馈
+  } else {
+    ElMessage.error('回答错误')
+  }
+
 }
 
 function nextQuestion() {
@@ -478,6 +539,10 @@ onMounted(() => {
     &:active {
       transform: scale(0.98);
     }
+  }
+
+  .save-button {
+    background-color: #75d047;
   }
 }
 
