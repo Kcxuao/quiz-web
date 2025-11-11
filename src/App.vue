@@ -1,331 +1,245 @@
 <template>
-  <div class="quiz-app">
-    <!-- 科目选择器 -->
-    <div class="subject-selector">
-      <el-cascader v-model="selectedSubjects" :options="formattedSubjects" :props="cascaderProps" placeholder="请选择科目"
-        size="large" clearable @change="handleSubjectChange" />
-    </div>
-
-    <!-- 答题卡 -->
-    <el-card class="quiz-card" shadow="hover">
-      <!-- 顶部进度条 -->
-      <div class="quiz-progress">
-        <div class="progress-bar">
-          <div class="progress-fill" :style="{ width: progressPercentage }"></div>
-        </div>
-        <span class="progress-text">
-          第 {{ currentIndex + 1 }} 题 / 共 {{ questions.length }} 题 ({{ progressPercentage }})
-        </span>
-      </div>
-
-      <!-- 题目内容 -->
-      <div class="quiz-content">
-        <div class=" quiz-meta">
-          <el-tag type="info">
-            {{
-              showDafult === 1 ? '单选' :
-                currentQuestion.type === 2 ? "填空" : "问答"
-            }}
-          </el-tag>
-
-          <el-tag v-if="currentQuestion.difficulty" :type="currentQuestion.difficulty === 'easy' ? 'success' :
-            currentQuestion.difficulty === 'medium' ? 'warning' : 'danger'
-            ">
-            {{
-              currentQuestion.difficulty === 'easy' ? '简单' :
-                currentQuestion.difficulty === 'medium' ? '中等' : '困难'
-            }}
-          </el-tag>
-        </div>
-
-        <h2 class="question-text" v-html="renderMath(currentQuestion.question)"></h2>
-
-        <!-- 选项区域 -->
-        <!-- 单选题 -->
-        <div class="options-grid" v-if="showDafult">
-          <div v-for="(text, key) in currentQuestion.options" :key="key" class="option-item" :class="{
-            'selected': selected === key,
-            'correct': selected && key === currentQuestion.answer,
-            'wrong': selected && key === selected && key !== currentQuestion.answer
-          }" @click="selectOption(key, currentQuestion.answer)">
-            <span class="option-key">{{ key }}</span>
-            <span class="option-text" v-html="renderMath(text)"></span>
-            <span v-if="selected" class="answer-icon">
-              <el-icon v-if="key === currentQuestion.answer">
-                <CircleCheck />
-              </el-icon>
-              <el-icon v-else-if="key === selected && key !== currentQuestion.answer">
-                <CircleClose />
-              </el-icon>
-            </span>
+  <div class="flex flex-col items-center min-h-screen bg-gray-100 p-4 md:p-8">
+    <div class="flex w-full max-w-6xl gap-4">
+      <!-- 左侧题号栏 -->
+      <transition name="slide">
+        <aside v-show="!isCollapsed" class="w-64 bg-white rounded-2xl shadow-md p-4 flex flex-col">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-semibold text-gray-700">题号</h3>
+            <button class="text-gray-500 hover:text-gray-700 p-1 rounded" @click="isCollapsed = true">←</button>
           </div>
-        </div>
-
-        <!-- 填空题 -->
-        <div class="input-text" v-if="currentQuestion.type === 2">
-          <el-input v-model="selected" :rows="6" type="textarea" placeholder="请输入答案" />
-        </div>
-
-        <!-- 非填空题 只展示解析即可 -->
-
-        <!-- 解析区域 -->
-        <div v-if="showExplanation" class="explanation-section">
-          <h3>题目解析</h3>
-          <div class="explanation-content">
-            <data class="question-text" v-html="renderMath(currentQuestion.explanation)"></data>
-            <div v-if="currentQuestion.knowledgePoints" class="knowledge-points">
-              <h4>相关知识点：</h4>
-              <el-tag v-for="(point, index) in currentQuestion.knowledgePoints" :key="index" class="knowledge-tag">
-                {{ point }}
-              </el-tag>
+          <div class="grid grid-cols-5 gap-2 overflow-y-auto pr-1 custom-scroll" style="max-height: 60vh;">
+            <div v-for="(q, i) in questions" :key="i"
+              class="w-9 h-9 flex items-center justify-center text-sm font-medium rounded-full cursor-pointer transition-all"
+              :class="{
+                'bg-blue-500 text-white': i === currentIndex,
+                'bg-green-500 text-white': answerStatus[i] === 'correct',
+                'bg-red-500 text-white': answerStatus[i] === 'wrong',
+                'bg-gray-100 hover:bg-gray-200 text-gray-600': !answerStatus[i] && i !== currentIndex
+              }" @click="jumpToQuestion(i)">
+              {{ i + 1 }}
             </div>
           </div>
+        </aside>
+      </transition>
+
+      <!-- 折叠按钮 -->
+      <button v-show="isCollapsed"
+        class="fixed left-3 bottom-3 z-30 bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center shadow"
+        @click="isCollapsed = false">
+        →
+      </button>
+
+      <!-- 主答题区域 -->
+      <main class="flex-1">
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 h-full flex flex-col">
+          <!-- 科目选择 -->
+          <div class="flex gap-2 justify-center mb-6">
+            <select v-model="selectedExam" class="border border-gray-300 rounded-lg p-2" @change="onExamChange">
+              <option v-for="exam in exams" :key="exam" :value="exam">{{ exam }}</option>
+            </select>
+
+            <select v-model="selectedSubject" class="border border-gray-300 rounded-lg p-2"
+              @change="handleSubjectChange">
+              <option v-for="sub in subSubjects[selectedExam]" :key="sub" :value="sub">{{ sub }}</option>
+            </select>
+          </div>
+
+          <!-- 统计面板 -->
+          <div class="grid grid-cols-3 gap-4 mb-4 text-center">
+            <div class="bg-green-50 text-green-700 rounded-xl py-2 font-semibold">
+              ✅ 正确：{{ correctCount }}
+            </div>
+            <div class="bg-red-50 text-red-700 rounded-xl py-2 font-semibold">
+              ❌ 错误：{{ wrongCount }}
+            </div>
+            <div class="bg-blue-50 text-blue-700 rounded-xl py-2 font-semibold">
+              📊 正确率：{{ accuracy }}%
+            </div>
+          </div>
+
+          <!-- 进度条 -->
+          <div class="w-full mb-4">
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-blue-500 transition-all" :style="{ width: progressPercentage }"></div>
+            </div>
+            <p class="text-sm text-gray-500 mt-1 text-center">
+              第 {{ currentIndex + 1 }} / {{ questions.length }} 题 · {{ progressPercentage }}
+            </p>
+          </div>
+
+          <!-- 题目内容 -->
+          <div class="flex-1 overflow-y-auto pr-1 custom-scroll">
+            <div class="space-y-4">
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold" :class="{
+                  'bg-blue-100 text-blue-700': showDafult === 1,
+                  'bg-yellow-100 text-yellow-700': currentQuestion.type === 2
+                }">
+                  {{ showDafult === 1 ? '单选' : currentQuestion.type === 2 ? '填空' : '问答' }}
+                </span>
+                <span v-if="currentQuestion.difficulty" class="px-3 py-1 rounded-full text-xs font-semibold" :class="{
+                  'bg-green-100 text-green-700': currentQuestion.difficulty === 'easy',
+                  'bg-yellow-100 text-yellow-700': currentQuestion.difficulty === 'medium',
+                  'bg-red-100 text-red-700': currentQuestion.difficulty === 'hard'
+                }">
+                  {{
+                    currentQuestion.difficulty === 'easy'
+                      ? '简单'
+                      : currentQuestion.difficulty === 'medium'
+                        ? '中等'
+                        : '困难'
+                  }}
+                </span>
+              </div>
+
+              <h2 class="text-xl font-semibold text-gray-800" v-html="renderMath(currentQuestion.question)"></h2>
+
+              <!-- 单选题选项 -->
+              <div v-if="showDafult" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                <div v-for="(text, key) in currentQuestion.options" :key="key"
+                  class="flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all" :class="{
+                    'bg-blue-50 border-blue-400': selected === key,
+                    'bg-green-50 border-green-400': selected && key === currentQuestion.answer,
+                    'bg-red-50 border-red-400': selected && key === selected && key !== currentQuestion.answer,
+                    'hover:bg-gray-50 border-gray-200': !selected
+                  }" @click="selectOption(key, currentQuestion.answer)">
+                  <span class="font-semibold">{{ key }}.</span>
+                  <span v-html="renderMath(text)"></span>
+                </div>
+              </div>
+
+              <!-- 填空题 -->
+              <div v-if="currentQuestion.type === 2" class="mt-4">
+                <textarea v-model="selected" rows="4" class="w-full border border-gray-300 rounded-lg p-2"
+                  placeholder="请输入答案"></textarea>
+                <button class="mt-2 bg-green-500 text-white rounded-lg px-4 py-2" @click="saveInput">提交答案</button>
+              </div>
+
+              <!-- 解析 -->
+              <div v-if="showExplanation" class="bg-gray-50 border border-gray-200 rounded-2xl p-4 mt-6">
+                <h3 class="font-semibold text-gray-700 mb-2">题目解析</h3>
+                <div v-html="renderMath(currentQuestion.answer)" class="text-gray-700"></div>
+                <div v-if="currentQuestion.knowledgePoints" class="mt-3 flex flex-wrap gap-2">
+                  <span v-for="(point, index) in currentQuestion.knowledgePoints" :key="index"
+                    class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">
+                    {{ point }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 底部按钮 -->
+          <div class="flex justify-between mt-6 pt-4 border-t border-gray-100">
+            <button class="bg-gray-200 px-4 py-2 rounded" :disabled="currentIndex === 0"
+              @click="prevQuestion">上一题</button>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded" @click="toggleExplanation">{{ showExplanation ?
+              '隐藏解析' : '显示解析' }}</button>
+            <button class="bg-gray-200 px-4 py-2 rounded" :disabled="currentIndex === questions.length - 1"
+              @click="nextQuestion">下一题</button>
+          </div>
         </div>
-      </div>
+      </main>
+    </div>
 
-      <!-- 导航按钮 -->
-      <div class="quiz-navigation">
-        <el-button class="nav-button" :icon="ArrowLeft" :disabled="currentIndex === 0" @click="prevQuestion"
-          size="large">
-          上一题
-        </el-button>
-
-        <el-button type="primary" @click="toggleExplanation" size="large">
-          {{ showExplanation ? '隐藏解析' : '显示解析' }}
-        </el-button>
-
-        <el-button class="save-button" @click="saveInput" type="primary" size="large" v-if="currentQuestion.type === 2">
-          提交答案
-        </el-button>
-
-        <el-button class="nav-button" type="primary" :icon="ArrowRight"
-          :disabled="currentIndex === questions.length - 1" @click="nextQuestion" size="large">
-          下一题
-        </el-button>
-      </div>
-    </el-card>
+    <!-- 提示框 -->
+    <div v-if="message.text"
+      class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-black text-white px-4 py-2 rounded shadow">
+      {{ message.text }}
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { ArrowLeft, ArrowRight, CircleCheck, CircleClose } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
-import 'element-plus/es/components/message/style/css'
 
-// 科目数据
-const subjects = ref([
-  {
-    value: 'test'
-  },
-  {
-    value: '省考', children: [
-      { value: '马克思主义基本原理' },
-      { value: '中国近现代史纲要' },
-      { value: '数据结构' },
-      { value: 'C++程序设计' },
-      { value: 'Java语言程序设计' },
-      { value: '概率论与数理统计' },
-    ]
-  },
-
-  {
-    value: '统考',
-    children: [
-      {
-        value: '高等数学',
-        children: [
-          { value: '2023年10月真题' }
-        ]
-      },
-    ]
-  }
-])
-
-// 格式化科目数据以适应级联选择器
-const formattedSubjects = computed(() => {
-  return subjects.value.map(subject => ({
-    // 第一级数据
-    value: subject.id || subject.value,
-    label: subject.name || subject.value,
-    children: subject.children ? subject.children.map(child => ({
-      // 第二级数据
-      value: child.id || child.value,
-      label: child.name || child.value,
-      children: child.children ? child.children.map(grandChild => ({
-        // 第三级数据
-        value: grandChild.id || grandChild.value,
-        label: grandChild.name || grandChild.value,
-      })) : null
-    })) : null
-  }))
-})
-
-const showDafult = computed(() => {
-  if (!currentQuestion.value.hasOwnProperty('type')) {
-    return 1
-  };
-  return currentQuestion.value.type;
-})
-
-const cascaderProps = {
-  expandTrigger: 'hover',
-  value: 'value',
-  label: 'label',
-  children: 'children'
+// ====== 科目数据 ======
+const exams = ['省考']
+const subSubjects = {
+  '省考': [
+    '创新思维', '计算机网络安全与管理', '论文写作', '中国近现代史纲要',
+    'C++程序设计', 'Java语言程序设计', '马克思主义基本原理', '数据结构', '概率论与数理统计'
+  ]
 }
 
-const selectedSubject = ref() // 默认选择
-const selectedSubjects = ref([])
+const selectedExam = ref('省考')
+const selectedSubject = ref(subSubjects[selectedExam.value][0])
 
-// 题目数据
-const questions = ref([
-  {
-    id: 1,
-    question: '默认题目',
-    options: {
-      A: '默认选项A',
-      B: '默认选项B',
-      C: '默认选项C',
-      D: '默认选项D'
-    },
-    answer: 'A',
-    explanation: '这是默认题目的解析',
-    difficulty: 'easy'
-  }
-])
-
-// 根据选择的科目加载题目
-const handleSubjectChange = async (value) => {
-  try {
-    isLoading.value = true
-    currentIndex.value = 0
-    selected.value = null
-
-    // 获取最后一级的科目值
-    const api = `/questions/${value.join("/")}.json`
-    const response = await fetch(api)
-    if (!response.ok) throw new Error('题目加载失败')
-    console.log(api);
-
-
-    const data = await response.json()
-    questions.value = data
-
-    // 如果没有题目，显示默认提示
-    if (data.length === 0) {
-      questions.value = [{
-        id: 0,
-        question: '当前科目暂无题目',
-        options: { A: '请选择其他科目' },
-        answer: 'A',
-        explanation: '请尝试选择其他科目',
-        difficulty: 'easy'
-      }]
-      ElMessage.warning('当前科目暂无题目')
-    } else {
-      ElMessage.success(`已加载 ${data.length} 道题目`)
-    }
-  } catch (error) {
-    console.error('加载题目失败:', error)
-    questions.value = [{
-      id: 0,
-      question: '题目加载失败',
-      options: { A: '请稍后重试' },
-      answer: 'A',
-      explanation: error.message,
-      difficulty: 'easy'
-    }]
-    ElMessage.error('题目加载失败，请稍后重试')
-  } finally {
-    isLoading.value = false
-  }
-}
-
-// 渲染数学公式的函数
-const renderMath = (text) => {
-  if (!text) return ''
-
-  // 使用正则表达式匹配行内公式和块级公式
-  const inlineRegex = /\$(.*?)\$/g
-  const blockRegex = /\$\$(.*?)\$\$/g
-
-  let html = text
-    // 替换行内公式
-    .replace(inlineRegex, (match, equation) => {
-      try {
-        return katex.renderToString(equation, {
-          throwOnError: false,
-          displayMode: false
-        })
-      } catch (e) {
-        console.error('KaTeX渲染错误:', e)
-        return match
-      }
-    })
-    // 替换块级公式
-    .replace(blockRegex, (match, equation) => {
-      try {
-        return katex.renderToString(equation, {
-          throwOnError: false,
-          displayMode: true
-        })
-      } catch (e) {
-        console.error('KaTeX渲染错误:', e)
-        return match
-      }
-    })
-
-  return html
-}
-
-// 答题状态
+// ====== 题目数据 ======
+const questions = ref([])
 const currentIndex = ref(0)
 const selected = ref(null)
 const showExplanation = ref(false)
-const isLoading = ref(false)
+const isCollapsed = ref(false)
+const answerStatus = ref([])
 
-// 计算属性
-const currentQuestion = computed(() => questions.value[currentIndex.value])
-const progressPercentage = computed(() => {
-  return Math.round((currentIndex.value + 1) / questions.value.length * 100) + '%'
+// ====== 提示信息 ======
+const message = ref({ text: '', timeout: null })
+function showMessage(text) {
+  clearTimeout(message.value.timeout)
+  message.value.text = text
+  message.value.timeout = setTimeout(() => message.value.text = '', 2000)
+}
+
+// ====== 计算属性 ======
+const currentQuestion = computed(() => questions.value[currentIndex.value] || {})
+const progressPercentage = computed(() => questions.value.length ? Math.round((currentIndex.value + 1) / questions.value.length * 100) + '%' : '0%')
+const showDafult = computed(() => currentQuestion.value.options ? 1 : 2)
+const correctCount = computed(() => answerStatus.value.filter(s => 'correct' === s).length)
+const wrongCount = computed(() => answerStatus.value.filter(s => 'wrong' === s).length)
+const accuracy = computed(() => {
+  const total = correctCount.value + wrongCount.value
+  return total ? ((correctCount.value / total) * 100).toFixed(1) : 0
 })
 
-// 选择题答案判断
+// ====== 方法 ======
+function renderMath(text) {
+  if (!text) return ''
+  return text.replace(/\$(.*?)\$/g, (_, eq) => katex.renderToString(eq, { throwOnError: false }))
+}
+
+function handleSubjectChange() {
+  fetch(`/questions/${selectedExam.value}/${selectedSubject.value}.json`)
+    .then(res => res.json())
+    .then(data => {
+      questions.value = data
+      currentIndex.value = 0
+      selected.value = null
+      answerStatus.value = Array(data.length).fill(null)
+      showMessage(`已加载 ${data.length} 道题`)
+    }).catch(() => showMessage('加载题目失败'))
+}
+
+function onExamChange() {
+  selectedSubject.value = subSubjects[selectedExam.value][0]
+  handleSubjectChange()
+}
+
 function selectOption(key, answer) {
   if (!selected.value) {
     selected.value = key
-
-    // 自动跳转下一题（仅在答对时）
     if (key === answer) {
-      setTimeout(() => {
-        if (currentIndex.value < questions.value.length - 1) {
-          nextQuestion()
-        } else {
-          ElMessage.success('恭喜完成所有题目！')
-        }
-      }, 800) // 0.8秒延迟让用户看到反馈
+      answerStatus.value[currentIndex.value] = 'correct'
+      showMessage('回答正确')
+      setTimeout(nextQuestion, 800)
+    } else {
+      answerStatus.value[currentIndex.value] = 'wrong'
+      showMessage('回答错误')
     }
   }
 }
 
-// 填空题答案判断
 function saveInput() {
   if (selected.value === currentQuestion.value.answer) {
-    ElMessage.success("回答正确")
-    setTimeout(() => {
-      if (currentIndex.value < questions.value.length - 1) {
-        nextQuestion()
-      } else {
-        ElMessage.success('恭喜完成所有题目！')
-      }
-    }, 800) // 0.8秒延迟让用户看到反馈
+    answerStatus.value[currentIndex.value] = 'correct'
+    showMessage('正确')
   } else {
-    ElMessage.error('回答错误')
+    answerStatus.value[currentIndex.value] = 'wrong'
+    showMessage('错误')
   }
-
 }
 
 function nextQuestion() {
@@ -333,227 +247,45 @@ function nextQuestion() {
     currentIndex.value++
     selected.value = null
     showExplanation.value = false
-    // 滚动到题目顶部
-    document.querySelector('.quiz-content')?.scrollTo(0, 0)
   }
 }
-
 function prevQuestion() {
   if (currentIndex.value > 0) {
     currentIndex.value--
     selected.value = null
     showExplanation.value = false
-    document.querySelector('.quiz-content')?.scrollTo(0, 0)
   }
 }
+function toggleExplanation() { showExplanation.value = !showExplanation.value }
+function jumpToQuestion(i) { currentIndex.value = i; selected.value = null; showExplanation.value = false }
 
-function toggleExplanation() {
-  showExplanation.value = !showExplanation.value
-}
-
-// 初始化加载默认科目题目
 onMounted(() => {
-  handleSubjectChange([selectedSubject.value])
+  handleSubjectChange()
 })
 </script>
 
-<style lang="less" scoped>
-// 定义变量
-@primary-color: #4a90e2;
-@success-color: #75d047;
-@warning-color: #e6a23c;
-@danger-color: #f56c6c;
-@border-radius-base: 4px;
-@transition-duration: 0.3s;
-
-// 混入(Mixins)
-.border-radius(@radius: @border-radius-base) {
-  border-radius: @radius;
+<style scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
 }
 
-.transition(@property: all, @duration: @transition-duration, @timing: ease) {
-  transition: @property @duration @timing;
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 
-.box-shadow(@x: 0, @y: 2px, @blur: 8px, @color: rgba(0, 0, 0, 0.1)) {
-  box-shadow: @x @y @blur @color;
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
 }
 
-// 主容器样式
-.quiz-app {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 24px;
-  background-color: #f5f7fa;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }
 
-.subject-selector {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-
-  .el-cascader {
-    width: 100% !important;
-  }
-}
-
-.quiz-card {
-  width: 100%;
-  .border-radius(12px);
-  overflow: hidden;
-  .transition();
-  .box-shadow();
-}
-
-// 进度条样式
-.quiz-progress {
-  margin-bottom: 28px;
-
-  .progress-bar {
-    height: 8px;
-    background-color: #e4e7ed;
-    .border-radius();
-    margin-bottom: 8px;
-    overflow: hidden;
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, @primary-color, lighten(@primary-color, 10%));
-      .border-radius();
-      .transition(width);
-    }
-  }
-
-  .progress-text {
-    font-size: 14px;
-    color: #606266;
-    display: block;
-    text-align: center;
-  }
-}
-
-// 题目内容
-.quiz-content {
-  .question-text {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #303133;
-    margin-bottom: 24px;
-    font-weight: 500;
-  }
-
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 32px;
-
-    .option-item {
-      padding: 16px 20px;
-      border: 1px solid #e4e7ed;
-      .border-radius(8px);
-      cursor: pointer;
-      .transition();
-      display: flex;
-      align-items: center;
-      position: relative;
-      background-color: white;
-
-      &:hover {
-        background-color: #f8fafc;
-        border-color: #c0c4cc;
-      }
-
-      &.selected {
-        background-color: #f0f7ff;
-        border-color: lighten(@primary-color, 20%);
-      }
-
-      &.correct {
-        background-color: #f0f9eb;
-        border-color: lighten(@success-color, 20%);
-      }
-
-      &.wrong {
-        background-color: #fef0f0;
-        border-color: lighten(@danger-color, 20%);
-      }
-
-      .option-key {
-        font-weight: bold;
-        margin-right: 12px;
-        color: @primary-color;
-        min-width: 20px;
-      }
-
-      .option-text {
-        flex: 1;
-        text-align: left;
-      }
-
-      .answer-icon {
-        margin-left: 8px;
-        font-size: 18px;
-
-        .el-icon {
-          vertical-align: middle;
-        }
-      }
-    }
-  }
-}
-
-// 解析区域
-.explanation-section {
-  margin-top: 30px;
-  padding: 15px;
-  background-color: #f8f8f8;
-  .border-radius();
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #333;
-  }
-
-  .knowledge-tag {
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
-}
-
-// 导航按钮
-.quiz-navigation {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 24px;
-
-  .nav-button {
-    min-width: 120px;
-    .transition();
-
-    &:active {
-      transform: scale(0.98);
-    }
-  }
-
-  .save-button {
-    background-color: #75d047;
-  }
-}
-
-// 数学公式样式
-:deep(.katex) {
-  font-size: 1.1em;
-}
-
-:deep(.katex-display) {
-  margin: 0.5em 0;
-  overflow: auto hidden;
-  padding: 0.2em 0;
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 </style>
