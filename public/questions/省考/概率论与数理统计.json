@@ -1,0 +1,315 @@
+[
+
+  {
+    "id": 1,
+    "type": "choice",
+    "question": "某人花钱买了A、B、C三种不同的奖券各一张。已知各种奖券中奖是相互独立的，中奖的概率分别为p(A)=0.03，P(B)=0.01，p(C)=0.02，如果只要有一种奖券中奖此人就一定赚钱，则此人赚钱的概率约为",
+    "options": {
+      "A": "0.05",
+      "B": "0.06",
+      "C": "0.07",
+      "D": "0.08"
+    },
+    "answer": "B",
+    "solution": "计算至少中一种奖券的概率 = 1 - (1-0.03)(1-0.01)(1-0.02) ≈ 1 - 0.97×0.99×0.98 ≈ 1 - 0.941 ≈ 0.059 ≈ 0.06"
+  },
+  {
+    "id": 2,
+    "type": "choice",
+    "question": "$X\\sim N(\\mu,4^2)$，$Y\\sim N(\\mu,5^2)$，$p_1=P(X\\leq\\mu-4)$，$p_2=P(Y\\geq\\mu+5)$，则",
+    "options": {
+      "A": "对任意实数$\\mu$，$p_1=p_2$",
+      "B": "对任意实数$\\mu$，$p_1<p_2$",
+      "C": "P只对$\\mu$的个别值，才有$p_1=p_2$",
+      "D": "对任意实数$\\mu$，都有$p_1>p_2$"
+    },
+    "answer": "A",
+    "solution": "$p_1 = P(X\\leq\\mu-4) = \\Phi(-1) = 1-\\Phi(1)$；$p_2 = P(Y\\geq\\mu+5) = 1-\\Phi(1)$，其中$\\Phi$为标准正态分布函数，故$p_1=p_2$"
+  },
+  {
+    "id": 3,
+    "type": "choice",
+    "question": "设随机变量$X$的密度函数为$f(x)$，且$f(-x)=f(x)$，$F(x)$是$X$的分布函数，则对任意实数$a$成立的是",
+    "options": {
+      "A": "$F(-a)=\\dfrac{1}{2}-\\int_{0}^{a}f(x)dx$",
+      "B": "$F(-a)=F(a)$",
+      "C": "$F(-a)=F(a)$",
+      "D": "$F(-a)=2F(a)-1$"
+    },
+    "answer": "A",
+    "solution": "由对称性$f(-x)=f(x)$可得：$F(-a) = P(X\\leq -a) = P(X\\geq a) = 1-P(X<a) = 1-\\int_{-a}^{a}f(x)dx = 1-\\int_{0}^{a}f(x)dx$"
+  },
+  {
+    "id": 4,
+    "type": "choice",
+    "question": "二维随机变量$(X,Y)$服从二维正态分布，则$X+Y$与$X-Y$不相关的充要条件为",
+    "options": {
+      "A": "$E[X]=E[Y]$",
+      "B": "$E[X^2]-(E[X])^2=E[Y^2]-(E[Y])^2$",
+      "C": "$E[X^2]=E[Y^2]$",
+      "D": "$E[X^2]+(E[X])^2=E[Y^2]+(E[Y])^2$"
+    },
+    "answer": "B",
+    "solution": "$X+Y$与$X-Y$不相关 $\\Leftrightarrow$ $\\text{Cov}(X+Y,X-Y)=0$ $\\Leftrightarrow$ $\\text{Var}(X)=\\text{Var}(Y)$ $\\Leftrightarrow$ $E[X^2]-(E[X])^2=E[Y^2]-(E[Y])^2$"
+  },
+  {
+    "id": 5,
+    "type": "choice",
+    "question": "随机变量X服从在区间(2,5)上的均匀分布，则X的数学期望E(X)的值为",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "3.5",
+      "D": "4"
+    },
+    "answer": "C",
+    "solution": "均匀分布数学期望E(X)=(a+b)/2=(2+5)/2=3.5"
+  },
+  {
+    "id": 6,
+    "type": "choice",
+    "question": "随机变量X服从在区间(-1,7)上的均匀分布,则X的数学期望E(X)的值为",
+    "options": {
+      "A": "4.5",
+      "B": "4",
+      "C": "3.5",
+      "D": "3"
+    },
+    "answer": "D",
+    "solution": "均匀分布数学期望E(X)=(a+b)/2=(-1+7)/2=3"
+  },
+  {
+    "id": 7,
+    "type": "choice",
+    "question": "若随机变量$X\\sim N(4,16)$，则$D\\left(\\frac{9}{4}X+1\\right)=$",
+    "options": {
+      "A": "27",
+      "B": "2",
+      "C": "81",
+      "D": "15"
+    },
+    "answer": "C",
+    "solution": "D(aX+b)=a²D(X) ⇒ D((9/4)X+1)=(9/4)²×16=81/16×16=81"
+  },
+  {
+    "id": 8,
+    "type": "choice",
+    "question": "随机变量X、Y的数学期望E(X)=1，E(Y)=2,方差D(X)=1，D(Y)=2,且X、Y相互独立,则E(3X-2Y)=",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "-1",
+      "D": "不能确定"
+    },
+    "answer": "C",
+    "solution": "E(3X-2Y)=3E(X)-2E(Y)=3×1-2×2=-1"
+  },
+  {
+    "id": 9,
+    "type": "choice",
+    "question": "设X₁,...,X₁₀₀及Y₁,...,Y₂₀₀分别是总体N(20,300)的容量为100，200的两个独立样本，X̄,Ȳ分别为样本均值，S₁²,S₂²分别为样本方差。则：Ȳ∼",
+    "options": {
+      "A": "N(20,3)",
+      "B": "N(10,3)",
+      "C": "N(20,1.5)",
+      "D": "N(20,6)"
+    },
+    "answer": "C",
+    "solution": "样本均值Ȳ∼N(μ,σ²/n)=N(20,300/200)=N(20,1.5)"
+  },
+  {
+    "id": 10,
+    "type": "choice",
+    "question": "在假设检验中，犯第一类错误的概率为a，第一类错误是指：",
+    "options": {
+      "A": "H₀不成立的条件下接受H₀的错误",
+      "B": "H₀不成立的条件下H₀的错误",
+      "C": "H₀成立的条件下拒绝H₀的错误",
+      "D": "H₀成立的条件下接受H₀的错误"
+    },
+    "answer": "C",
+    "solution": "第一类错误是指原假设H₀为真时错误地拒绝H₀"
+  },
+  {
+    "id": 11,
+    "type": "choice",
+    "question": "袋中有50个乒乓球，其中20个黄的，30个白的，现在两个人不放回地依次从袋中随机各取一球。则第二个人取到黄球的概率是",
+    "options": {
+      "A": "1/5",
+      "B": "2/5",
+      "C": "19/49",
+      "D": "20/49"
+    },
+    "answer": "B",
+    "solution": "不放回抽样中每个人取到黄球的概率相同，都是20/50=2/5"
+  },
+  {
+    "id": 12,
+    "type": "choice",
+    "question": "下列函数中，可作为某一随机变量的分布函数是",
+    "options": {
+      "A": "$F(x)=1+\\frac{1}{x^2}$",
+      "B": "$F(x)=\\frac{1}{2}+\\frac{1}{\\pi}\\arctan x$",
+      "C": "$F(x)=\\begin{cases}\\frac{1}{2}(1-e^{-x}), & x>0 \\\\ 0, & x\\leq 0\\end{cases}$",
+      "D": "$F(x)=\\int_{-\\infty}^{x}f(t)dt$, 其中$\\int_{-\\infty}^{+\\infty}f(t)dt=1$"
+    },
+    "answer": "B",
+    "solution": "分布函数需满足：1.单调不减 2.右连续 3.F(-∞)=0,F(+∞)=1。选项B满足所有条件。"
+  },
+  {
+    "id": 13,
+    "type": "choice",
+    "question": "设离散型随机变量(X,Y)的联合分布律如下，若X,Y相互独立，则",
+    "options": {
+      "A": "α=2/9,β=1/9",
+      "B": "α=1/9,β=2/9",
+      "C": "α=1/6,β=1/6",
+      "D": "α=1/12,β=1/4"
+    },
+    "answer": "A",
+    "solution": "由独立性P(X=i,Y=j)=P(X=i)P(Y=j)。先求边缘分布再验证独立性可得α=2/9,β=1/9。"
+  },
+  {
+    "id": 14,
+    "type": "choice",
+    "question": "对于任意两个随机变量X和Y，若E(XY)=E(X)·E(Y)，则",
+    "options": {
+      "A": "D(XY)=D(X)·D(Y)",
+      "B": "D(X+Y)=D(X)+D(Y)",
+      "C": "X和Y独立",
+      "D": "X和Y不独立"
+    },
+    "answer": "B",
+    "solution": "E(XY)=E(X)E(Y)说明不相关，此时D(X+Y)=D(X)+D(Y)-2Cov(X,Y)=D(X)+D(Y)。"
+  },
+  {
+    "id": 15,
+    "type": "choice",
+    "question": "在对单个正态总体均值的假设检验中，当总体方差已知时，选用",
+    "options": {
+      "A": "t检验法",
+      "B": "u检验法",
+      "C": "F检验法",
+      "D": "χ²检验法"
+    },
+    "answer": "B",
+    "solution": "方差已知时使用基于标准正态分布的u检验，方差未知时使用t检验。"
+  },
+  {
+    "id": 16,
+    "type": "choice",
+    "question": "对于任意两个随机事件A与B，有$ P(A-B) $为",
+    "options": {
+      "A": "$ P(A)-P(B) $",
+      "B": "$ P(A)-P(B)+P(AB) $",
+      "C": "$ P(A)-P(AB) $",
+      "D": "$ P(A)+P(\\overline{B})-P(A\\overline{B}) $"
+    },
+    "answer": "C",
+    "solution": "根据概率减法公式，$ P(A-B) = P(A) - P(AB) $"
+  },
+  {
+    "id": 17,
+    "type": "choice",
+    "question": "事件表达式$ A\\cup B $的意思是",
+    "options": {
+      "A": "事件A与事件B同时发生",
+      "B": "事件A发生但事件B不发生",
+      "C": "事件B发生但事件A不发生",
+      "D": "事件A与事件B至少有一件发生"
+    },
+    "answer": "D",
+    "solution": "并集$ A\\cup B $表示事件A或事件B至少有一个发生"
+  },
+  {
+    "id": 18,
+    "type": "choice",
+    "question": "A、B是两个随机事件，已知$ P(A)=0.6,P(B)=0.3,P(AB)=0.2 $，则$ P(A\\cup B)= $",
+    "options": {
+      "A": "0.8",
+      "B": "0.7",
+      "C": "0.5",
+      "D": "0.6"
+    },
+    "answer": "B",
+    "solution": "根据概率加法公式：$ P(A\\cup B) = P(A) + P(B) - P(AB) = 0.6 + 0.3 - 0.2 = 0.7 $"
+  },
+  {
+    "id": 19,
+    "type": "choice",
+    "question": "A、B为两事件，若$ P(A\\cup B)=0.8,P(A)=0.2,P(\\overline{B})=0.4 $，则成立的是",
+    "options": {
+      "A": "$ P(A\\overline{B})=0.32 $",
+      "B": "$ P(\\overline{AB})=0.2 $",
+      "C": "$ P(B-A)=0.4 $",
+      "D": "$ P(AB)=0.1 $"
+    },
+    "answer": "B",
+    "solution": "由$ P(\\overline{B})=0.4 $得$ P(B)=0.6 $，根据加法公式$ P(AB)=P(A)+P(B)-P(A\\cup B)=0.2+0.6-0.8=0 $，因此$ P(\\overline{AB})=1-P(AB)=0.2 $"
+  },
+  {
+    "id": 20,
+    "type": "choice",
+    "question": "设事件A与B相互独立，则下列说法错误的是",
+    "options": {
+      "A": "$ A $与$ \\overline{B} $独立",
+      "B": "$ A $与$ \\overline{B} $一定互斥",
+      "C": "$ P(\\overline{AB})=P(\\overline{A})P(B) $",
+      "D": "$ \\overline{A} $与$ \\overline{B} $独立"
+    },
+    "answer": "B",
+    "solution": "独立事件不一定互斥，只有当$ P(A)=0 $或$ P(B)=0 $时才互斥"
+  },
+  {
+    "id": 21,
+    "type": "choice",
+    "question": "样本$ (X_{1},X_{2},X_{3}) $取自总体X，E(X)=m，D(X)=s2，则有",
+    "options": {
+      "A": "$ X_{1}+X_{2}+X_{3} $是m的无偏估计",
+      "B": "$ \\frac{X1+X2+X3}{3} $是m的无偏估计",
+      "C": "$ X_{2}^{2} $是s2的无偏估计",
+      "D": "$ \\left(\\frac{X_{1}+X_{2}+X_{3}}{3}\\right)^{2} $是s2的无偏估计"
+    },
+    "answer": "B",
+    "solution": "样本均值$ \\frac{X1+X2+X3}{3} $的期望等于总体均值m，是无偏估计"
+  },
+  {
+    "id": 22,
+    "type": "choice",
+    "question": "若随机变量$ X\\sim N(4,16) $，则$ D(\\frac{3}{4}X+1)= $",
+    "options": {
+      "A": "3",
+      "B": "6",
+      "C": "9",
+      "D": "12"
+    },
+    "answer": "C",
+    "solution": "根据方差性质$$ D(aX+b)=a^2D(X) $$，故$ D(\\frac{3}{4}X+1)=(\\frac{3}{4})^2\\times16=9 $"
+  },
+  {
+    "id": 23,
+    "type": "choice",
+    "question": "随机变量X、Y的数学期望E(X)=1，E(Y)=2，方差D(X)=1，D(Y)=2，且X、Y相互独立，则$ D(3X+2Y)= $",
+    "options": {
+      "A": "3",
+      "B": "13",
+      "C": "17",
+      "D": "不能确定"
+    },
+    "answer": "C",
+    "solution": "独立随机变量方差性质：$ D(3X+2Y)=3^2D(X)+2^2D(Y)=9\\times1+4\\times2=17 $"
+  },
+  {
+    "id": 24,
+    "type": "choice",
+    "question": "设$ X_{1},...,X_{100} $及$ Y_{1},...,Y_{15} $分别是总体N(4,600)的容量为100，150的两个独立样本，$ \\bar{X},\\bar{Y} $分别为样本均值，$ S_{1}^{2},S_{2}^{2} $分别为样本方差。则：$ \\bar{X}\\sim $",
+    "options": {
+      "A": "N(5,6)",
+      "B": "N(5,4)",
+      "C": "N(4,6)",
+      "D": "N(4,5)"
+    },
+    "answer": "C",
+    "solution": "样本均值$ \\bar{X}\\sim N(\\mu,\\frac{\\sigma^2}{n})=N(4,\\frac{600}{100})=N(4,6) $"
+  }
+]

@@ -1,0 +1,374 @@
+[
+  {
+    "id": 1,
+    "question": "在Java中，数组的长度一旦确定后就不能再更改。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 2,
+    "question": "在Java中，一个子类可以继承多个父类。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 3,
+    "question": "在Java中，多态是指一个对象可以同时属于多个不同的类。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 4,
+    "question": "在Java中，类是对象的实例化，每个对象都是基于某个类创建的。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 5,
+    "question": "在Java中，要读写文件，只需使用File类的read()和write()方法即可完成。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 6,
+    "question": "在Java中，一个类可以同时实现多个接口。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 7,
+    "question": "在Java中，基本数据类型是对象，因此它们可以调用方法和具有成员变量。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 8,
+    "question": "在Java中，字符串是可变的，可以通过改变字符串对象的字符来修改其内容。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 9,
+    "question": "在Java中，基本字符流是用于处理二进制数据的流。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 10,
+    "question": "在Java中，多线程可以使多个线程同时执行相同的方法。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 11,
+    "question": "静态方法可以直接访问非静态成员（实例变量和实例方法），而不需要通过创建对象。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 12,
+    "question": "在Java中，接口可以包含已实现的方法。",
+    "options": {
+      "A": "正确",
+      "B": "错误"
+    },
+    "answer": "B"
+  },
+    {
+    "id": 1,
+    "question": "编译好的Java源程序在计算机上运行需依次经历两个阶段，分别是",
+    "options": {
+      "A": "即时编译和验证",
+      "B": "即时编译和解释执行",
+      "C": "编译和解释执行",
+      "D": "验证和解释执行"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 2,
+    "question": "以下数据类型转换中，必须进行强制类型转换的是",
+    "options": {
+      "A": "short→long",
+      "B": "byte→short",
+      "C": "float→double",
+      "D": "long→byte"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 3,
+    "question": "在Java中，for循环的语法格式为：for (initialization; termination; increment) { // code to be executed } 在上述语法格式中，initialization、termination和increment分别代表什么？",
+    "options": {
+      "A": "initialization代表循环的初始条件，termination代表循环的终止条件，increment代表循环的步长",
+      "B": "initialization代表循环的步长，termination代表循环的初始条件，increment代表循环的终止条件",
+      "C": "initialization代表循环的终止条件，termination代表循环的步长，increment代表循环的初始条件",
+      "D": "initialization代表循环的步长，termination代表循环的终止条件，increment代表循环的初始条件"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 4,
+    "question": "Java程序中调用方法时，参数传送采用的机制是",
+    "options": {
+      "A": "值传送",
+      "B": "引用传送",
+      "C": "通过返回值传送",
+      "D": "接口传送"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 5,
+    "question": "下列选项中，能够正确初始化数组m的是",
+    "options": {
+      "A": "int [ ] m = new int[]",
+      "B": "int m[ ] = {1,2,3,4,5,6}",
+      "C": "m = {1,2,3,4,5}",
+      "D": "int [ ] m = new int [5]{1,2,3,4,5}"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 6,
+    "question": "接口上的所有变量都默认为是什么属性",
+    "options": {
+      "A": "protected",
+      "B": "default",
+      "C": "private",
+      "D": "public"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 7,
+    "question": "某程序想要随机读写字符文件，能支持这个要求的类是",
+    "options": {
+      "A": "RandomAccessFile",
+      "B": "FileReader",
+      "C": "DataInputStream",
+      "D": "BufferedInputStream"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 8,
+    "question": "下列哪个容器可以保证元素的排列顺序与添加顺序一致？",
+    "options": {
+      "A": "HashSet",
+      "B": "TreeSet",
+      "C": "LinkedList",
+      "D": "HashMap"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 9,
+    "question": "在Java Swing组件中，下列哪个组件可以实现下拉选择功能？",
+    "options": {
+      "A": "JButton",
+      "B": "JComboBox",
+      "C": "JTextField",
+      "D": "JList"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 10,
+    "question": "下列哪个类可以用于多个线程之间共享数据？",
+    "options": {
+      "A": "BlockingQueue",
+      "B": "Runnable",
+      "C": "Callable",
+      "D": "ExecutorService"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 11,
+    "question": "Java程序中的主函数main()前面的修饰符是",
+    "options": {
+      "A": "public final",
+      "B": "public static void",
+      "C": "private static",
+      "D": "static final"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 12,
+    "question": "用来声明Java布尔变量（逻辑变量）的保留字是",
+    "options": {
+      "A": "byte",
+      "B": "short",
+      "C": "boolean",
+      "D": "char"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 13,
+    "question": "下列语句中，不能作为for语句中条件表达式的是",
+    "options": {
+      "A": "false",
+      "B": "k++",
+      "C": "k>=5",
+      "D": "k==-1"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 14,
+    "question": "下列选项中，均属于方法签名的是",
+    "options": {
+      "A": "方法名、方法参数个数、方法返回值",
+      "B": "方法名、方法返回值、方法参数类型",
+      "C": "方法返回值、方法参数个数、方法参数类型",
+      "D": "方法名、方法参数个数、方法参数类型"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 15,
+    "question": "数组下标可以是",
+    "options": {
+      "A": "整形变量或表达式",
+      "B": "整形变量",
+      "C": "表达式",
+      "D": "浮点型变量或整形变量"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 16,
+    "question": "如果类A继承和扩展类B，则子类A和父类B之间的关系是",
+    "options": {
+      "A": "extends 关系",
+      "B": "has a 关系",
+      "C": "is a关系",
+      "D": "use a 关系"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 17,
+    "question": "Java中，在字节流和字符流之间起到中介作用，充当字节流与读者之间接口的类是",
+    "options": {
+      "A": "StringReader",
+      "B": "BufferedReader",
+      "C": "OutputStreamWriter",
+      "D": "InputStreamReader"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 18,
+    "question": "在Java AWT组件中，下列哪个组件可以对按钮进行分组？",
+    "options": {
+      "A": "JButton",
+      "B": "ButtonGroup",
+      "C": "CheckboxGroup",
+      "D": "Choice"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 19,
+    "question": "下列哪个组件可以用来显示一个可滚动的多行文本？",
+    "options": {
+      "A": "JTextArea",
+      "B": "JTextField",
+      "C": "JLabel",
+      "D": "JList"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 20,
+    "question": "在Java中，以下哪个关键字用于创建一个新的线程？",
+    "options": {
+      "A": "new",
+      "B": "start",
+      "C": "create",
+      "D": "run"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 21,
+    "question": "共有类TestClass所在的文件经过Java编译程序编译后，产生的文件是",
+    "options": {
+      "A": "TestClass.java",
+      "B": "Testclass.java",
+      "C": "Testclass.class",
+      "D": "TestClass.class"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 22,
+    "question": "下列选项中，能作为Java语言注释的是",
+    "options": {
+      "A": "/*我是javadoc注释",
+      "B": "//我是javadoc注释",
+      "C": "//我是javadoc注释**/",
+      "D": "/**我是javadoc注释"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 23,
+    "question": "下列语句中，不属于循环语句是",
+    "options": {
+      "A": "switch",
+      "B": "for",
+      "C": "while",
+      "D": "do"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 24,
+    "question": "同一个类中多个方法有相同的名字及不同的参数列表，这种情况称为",
+    "options": {
+      "A": "字段重载",
+      "B": "构造器重载",
+      "C": "方法重载",
+      "D": "对象初始化器重载"
+    },
+    "answer": "C"
+  }
+]
